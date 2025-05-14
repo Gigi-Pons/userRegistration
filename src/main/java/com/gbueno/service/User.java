@@ -17,6 +17,7 @@ public class User {
         this.password = password;
     }
 
+    //setters
     public void setId(Long id) {
         this.id = id;
     }
@@ -33,6 +34,7 @@ public class User {
         this.name = name;
     }
 
+    //getters
     public Long getId() {
         return id;
     }
