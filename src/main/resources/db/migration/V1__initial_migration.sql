@@ -1,3 +1,10 @@
+CREATE TABLE IF NOT EXISTS `store`.`users` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NULL DEFAULT NULL,
+  `password` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`));
+
 CREATE TABLE IF NOT EXISTS `store`.`addresses` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(255) NOT NULL,
@@ -9,10 +16,3 @@ CREATE TABLE IF NOT EXISTS `store`.`addresses` (
   CONSTRAINT `addresses_fk`
     FOREIGN KEY (`user_id`)
     REFERENCES `store`.`users` (`id`));
-
-CREATE TABLE IF NOT EXISTS `store`.`users` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(255) NULL DEFAULT NULL,
-  `password` VARCHAR(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`));
