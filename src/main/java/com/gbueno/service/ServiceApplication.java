@@ -1,5 +1,6 @@
 package com.gbueno.service;
 
+import org.flywaydb.core.Flyway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +13,7 @@ public class ServiceApplication {
 		ApplicationContext context = SpringApplication.run(ServiceApplication.class, args);
 		var userService = context.getBean(UserService.class);
 		userService.registerUser(new User(1L, "grecia@gmail.com", "123", "Grecia Bueno"));
+
 	}
 
 }
