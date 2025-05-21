@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `store`.`tags` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`));
-
+f
 CREATE TABLE user_tags (
   user_id BIGINT NOT NULL,
   tag_id INT NOT NULL,
