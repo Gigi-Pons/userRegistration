@@ -4,6 +4,7 @@ import com.gbueno.service.entities.Address;
 import com.gbueno.service.entities.Profile;
 import com.gbueno.service.entities.Tag;
 import com.gbueno.service.entities.User;
+import com.gbueno.service.repositories.AddressRepository;
 import com.gbueno.service.repositories.ProfileRepository;
 import com.gbueno.service.repositories.UserRepository;
 import org.flywaydb.core.Flyway;
@@ -19,12 +20,18 @@ public class ServiceApplication {
 		ApplicationContext context = SpringApplication.run(ServiceApplication.class, args);
 		var repository = context.getBean(UserRepository.class);
 		var profileRepository = context.getBean(ProfileRepository.class);
+		var addressRepository = context.getBean(AddressRepository.class);
 
-//		var user = User.builder()
-//				.name("Bessie")
-//				.password("password")
-//				.email("Bessie@gmail.com")
-//				.build();
+		var user = repository.findByEmail("Bessie@gmail.com")
+				.orElseGet(() -> {
+					var newUser = User.builder()
+						.name("Bessie")
+						.email("Bessie@gmail.com")
+						.password("password")
+						.build();
+					return repository.save(new User());
+				});
+
 //		var profile = Profile.builder()
 //				.bio("bio")
 //				.build();
@@ -34,7 +41,15 @@ public class ServiceApplication {
 //		user.setProfile(profile);
 //		repository.save(user);
 
+		var address = Address.builder()
+				.street("Congress")
+				.city("Austin")
+				.zip("78703")
+				.build();
 
+
+		address.setUser(user);
+		addressRepository.save(address);
 
 	}
 
