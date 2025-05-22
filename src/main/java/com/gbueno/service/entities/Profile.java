@@ -1,13 +1,17 @@
 package com.gbueno.service.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Table(name = "profiles")
 public class Profile {
     @Id
@@ -26,4 +30,13 @@ public class Profile {
 
     @Column(name = "loyalty_points")
     private Integer loyaltyPoints;
+
+    //profile knows about the user but a user doesn't know about a profile
+    //the profile is the owner, use JoinColumn
+    @OneToOne
+    @JoinColumn(name = "id")
+    //this tells Hibernate to use the same column of both the primary and foreign key of the entity
+    @MapsId
+    @ToString.Exclude
+    private User user;
 }

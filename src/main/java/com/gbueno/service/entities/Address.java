@@ -2,12 +2,15 @@ package com.gbueno.service.entities;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
+@Builder
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "addresses")
 public class Address {
     @Id
@@ -23,4 +26,9 @@ public class Address {
 
     @Column(name = "zip")
     private String zip;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User user;
 }
