@@ -41,15 +41,18 @@ public class ServiceApplication {
 //		user.setProfile(profile);
 //		repository.save(user);
 
-		var address = Address.builder()
-				.street("Congress")
-				.city("Austin")
-				.zip("78703")
-				.build();
+//		var address = Address.builder()
+//				.street("Congress")
+//				.city("Austin")
+//				.zip("78703")
+//				.build();
+//
+//
+//		address.setUser(user);
+//		addressRepository.save(address);
 
-
-		address.setUser(user);
-		addressRepository.save(address);
+		var address = addressRepository.findById(1L);
+		System.out.println(address);
 
 	}
 
